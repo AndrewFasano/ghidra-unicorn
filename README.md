@@ -14,7 +14,8 @@ Then install dependencies with `pip3 install -r requirements.txt`
 2. Run autoanalysis
 3. Export the binary with `Tools->UnicornExport`
 4. Select a location to the output pickle file to
-5. From an environment with a real Python3 shell, run `import_unicorn.py [path_to_your_generated_pickle_file]`
-6. Modify `import_unicorn.py`'s `hook_code` function to do useful things
+5. Configure your START and END variables in `import_unicorn.py` to control what code you'll run
+6. From an environment with a real Python3 shell, run `import_unicorn.py [path_to_your_generated_pickle_file]`
+7. Modify `import_unicorn.py`'s `hook_code` function to do useful things
 
 
