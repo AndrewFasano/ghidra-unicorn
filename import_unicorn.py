@@ -28,13 +28,11 @@ BAD_ADDRS = [] # Put addresses in here that you want to skip emulation of
 def hook_code(emu, address, size, user_data):  
     global last_ib
     global idx
-    #if DEBUG:
-    codestr = ""
-    if True:
+    if DEBUG:
         print('>>> Tracing instruction at 0x%x, instruction size = 0x%x' %(address, size))
         code = emu.mem_read(address, size)
         for i in disasm.disasm(code, size):
-            codestr = ("\t0x{:x}\t{}\t{}".format(i.address, i.mnemonic, i.op_str))
+            print("\t0x{:x}\t{}\t{}".format(i.address, i.mnemonic, i.op_str))
 
     if address in BAD_ADDRS:
         emu.reg_write(UC_ARM_REG_PC, (address+size)|1)
