@@ -5,9 +5,15 @@
 
 # Usage: python3 import_unicorn.py pickle_file_path
 
+# If you get an invalid memory write error:
+#   - Did you set START and END to sane values?
+#   - Turn on debug, and identify the bad instruction. Maybe you need to map additional memory that we failed to export from Ghidra?
+
+
 (START,END) = (0x0, 0xFFFFFF)
 DEBUG = False
 
+import os
 import sys
 import pickle
 
@@ -62,7 +68,7 @@ stack_size = 0x1000
 emu.mem_map(stack_start, stack_size)
 
 # Add a single argument to the stack and set up stack pointer
-emu.mem_write(0x12345678, stack_start + 0x100)
+emu.mem_write(stack_start+0x100, bytes([0x12, 0x34, 0x56, 0x78]))
 emu.reg_write(UC_ARM_REG_SP, stack_start+0x100)
 
 # Run emulator in thumb mode
